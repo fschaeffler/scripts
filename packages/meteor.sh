@@ -8,4 +8,4 @@
 # export METEOR_RELEASE=$(cat .meteor/release | sed "s/METEOR@//g")
 
 METEOR_RELEASE=${METEOR_RELEASE:=""}
-\curl -sSL https://install.meteor.com | if [[ $METEOR_RELEASE]]; then sed -i 's/^RELEASE=.*$/RELEASE="'${METEOR_RELEASE}'"/g' fi | sed -e 's/PREFIX=.*/PREFIX="${HOME}"/g' | sh
+\curl -sSL https://install.meteor.com | if [[ $METEOR_RELEASE ]]; then sed -e 's/^RELEASE=.*$/RELEASE="'${METEOR_RELEASE}'"/g'; else sed -e 's/ / /g'; fi | sed -e 's/PREFIX=.*/PREFIX="${HOME}"/g' | sh
