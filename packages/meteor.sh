@@ -28,6 +28,7 @@ try_install () {
 	else
 		rm $tmpfile
 		install_retries=$(($install_retries + 1))
+		try_install
 	fi
 }
 
