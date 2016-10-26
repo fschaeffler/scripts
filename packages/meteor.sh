@@ -16,6 +16,7 @@ try_install () {
 		fi
 
 		sed -i 's/PREFIX=.*/PREFIX="${HOME}"/g' $tmpfile
+		export PATH="$PATH:~/.meteor/"
 
 		chmod +x $tmpfile
 		$tmpfile
