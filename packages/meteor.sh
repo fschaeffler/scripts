@@ -21,7 +21,7 @@ try_install () {
 		$tmpfile
 
 		rm $tmpfile
-	elif [[ "$install_retries" -gt "$METEOR_INSTALL_RETRIES" ]];
+	elif [[ "$install_retries" -gt "$METEOR_INSTALL_RETRIES" ]]; then
 		echo "installation failed"
 		rm $tmpfile
 		exit 1
