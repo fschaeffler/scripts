@@ -13,6 +13,4 @@ if [[ "$meteor_major" -ge "1" ]]; then
 	fi
 fi
 
-nvm install $node_version
-nvm use $node_version
-nvm alias default $node_version
+echo $node_version
