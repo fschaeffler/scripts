@@ -27,6 +27,13 @@ echo "Selenium ${SELENIUM_VERSION} is now ready to connect on port ${SELENIUM_PO
 sleep 15
 
 selenium_check=$(curl http://localhost:4444/selenium-server/driver/?cmd=getLogMessages)
+echo $selenium_check
 if [[ $selenium_check != 'OK,' ]]; then
-	BASH_SOURCE[0]
+	selenium_check=$(curl http://localhost:4444/selenium-server/driver/?cmd=getLogMessages)
+	echo $selenium_check
+
+	if [[ $selenium_check != 'OK,' ]]; then
+		script_location=$(readlink -f "$0")
+		exec "$script_location"
+	fi
 fi
