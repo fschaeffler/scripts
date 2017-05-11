@@ -23,3 +23,10 @@ wget --continue --output-document "${CACHED_DOWNLOAD}" "http://selenium-release.
 java ${SELENIUM_JAVA_OPTIONS} -jar "${CACHED_DOWNLOAD}" -port "${SELENIUM_PORT}" ${SELENIUM_OPTIONS} 2>&1 &
 sleep "${SELENIUM_WAIT_TIME}"
 echo "Selenium ${SELENIUM_VERSION} is now ready to connect on port ${SELENIUM_PORT}..."
+
+sleep 15
+
+selenium_check=$(curl http://localhost:4444/selenium-server/driver/?cmd=getLogMessages)
+if [[ $selenium_check != 'OK,' ]]; then
+	BASH_SOURCE[0]
+fi
