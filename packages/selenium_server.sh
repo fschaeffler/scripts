@@ -8,7 +8,7 @@
 #
 # Include in your builds via
 # \curl -sSL https://raw.githubusercontent.com/codeship/scripts/master/packages/selenium_server.sh | bash -s
-SELENIUM_VERSION=${SELENIUM_VERSION:="2.46.0"}
+SELENIUM_VERSION=${SELENIUM_VERSION:="3.4.0"}
 SELENIUM_PORT=${SELENIUM_PORT:="4444"}
 SELENIUM_OPTIONS=${SELENIUM_OPTIONS:=""}
 SELENIUM_WAIT_TIME=${SELENIUM_WAIT_TIME:="10"}
@@ -26,10 +26,10 @@ echo "Selenium ${SELENIUM_VERSION} is now ready to connect on port ${SELENIUM_PO
 
 sleep 15
 
-selenium_check=$(curl http://localhost:4444/selenium-server/driver/?cmd=getLogMessages)
+selenium_check=$(curl 'http://localhost:4444/selenium-server/driver/?cmd=getLogMessages')
 echo $selenium_check
 if [[ $selenium_check != 'OK,' ]]; then
-	selenium_check=$(curl http://localhost:4444/selenium-server/driver/?cmd=getLogMessages)
+	selenium_check=$(curl 'http://localhost:4444/selenium-server/driver/?cmd=getLogMessages')
 	echo $selenium_check
 
 	if [[ $selenium_check != 'OK,' ]]; then
