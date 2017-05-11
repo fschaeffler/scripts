@@ -26,14 +26,14 @@ echo "Selenium ${SELENIUM_VERSION} is now ready to connect on port ${SELENIUM_PO
 
 sleep 15
 
-selenium_check=$(curl 'http://localhost:4444/selenium-server/driver/?cmd=getLogMessages')
+selenium_check=$(curl 'http://localhost:4444/wd/hub/status' | grep '"state":"success"')
 echo $selenium_check
-if [[ $selenium_check != 'OK,' ]]; then
-	selenium_check=$(curl 'http://localhost:4444/selenium-server/driver/?cmd=getLogMessages')
+if [[ $selenium_check == '' ]]; then
+	selenium_check=$(curl 'http://localhost:4444/wd/hub/status' | grep '"state":"success"')
 	echo $selenium_check
 
-	if [[ $selenium_check != 'OK,' ]]; then
-		script_location=$(readlink -f "$0")
-		exec "$script_location"
+	if [[ $selenium_check == '' ]]; then
+		script_location="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
+		exec "$script_location/selenium_server.sh"
 	fi
 fi
