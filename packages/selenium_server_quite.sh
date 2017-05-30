@@ -20,7 +20,7 @@ MINOR_VERSION=${SELENIUM_VERSION%.*}
 CACHED_DOWNLOAD="${HOME}/cache/selenium-server-standalone-${SELENIUM_VERSION}.jar"
 
 wget --continue --output-document "${CACHED_DOWNLOAD}" "http://selenium-release.storage.googleapis.com/${MINOR_VERSION}/selenium-server-standalone-${SELENIUM_VERSION}.jar"
-java ${SELENIUM_JAVA_OPTIONS} -jar "${CACHED_DOWNLOAD}" -port "${SELENIUM_PORT}" ${SELENIUM_OPTIONS} -log selenium-server.log &
+java ${SELENIUM_JAVA_OPTIONS} -jar "${CACHED_DOWNLOAD}" -log selenium-server.log -port "${SELENIUM_PORT}" ${SELENIUM_OPTIONS} &
 sleep "${SELENIUM_WAIT_TIME}"
 echo "Selenium ${SELENIUM_VERSION} is now ready to connect on port ${SELENIUM_PORT}..."
 
