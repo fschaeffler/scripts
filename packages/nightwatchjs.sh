@@ -50,9 +50,9 @@ if [[ $RUN_LEVELS != '' ]]; then
 		fi
 
 		rm -rf .meteor/local/db
-		sleep 3
+		sleep 15
 		cp -rf ../db .meteor/local
-		sleep 3
+		sleep 15
 	done
 else
 	nightwatch -c tests/nightwatch/nightwatch.json --suiteRetries 3;
