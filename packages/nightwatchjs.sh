@@ -45,6 +45,10 @@ if [[ $RUN_LEVELS != '' ]]; then
 		echo $runLevel
 		nightwatch -c tests/nightwatch/nightwatch.json --suiteRetries 3 --tag "$runLevel"
 
+		if [[ $? != 0 ]]; then
+			exit $?
+		fi
+
 		rm -rf .meteor/local/db
 		sleep 3
 		cp -rf ../db .meteor/local
