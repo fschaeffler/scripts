@@ -41,8 +41,9 @@ if [[ $RUN_LEVELS != '' ]]; then
 	cp -rf .meteor/local/db ..
 	sleep 3
 
-	for runLevel in "${RUN_LEVELS[@]}"; do
-		nightwatch -c tests/nightwatch/nightwatch.json --suiteRetries 3 --tag $runLevel
+	for runLevel in $(grep -R 'runLevel' tests/nightwatch/cases/ | cut -d"'" -f4 | sort | uniq); do
+		echo $runLevel
+		nightwatch -c tests/nightwatch/nightwatch.json --suiteRetries 3 --tag "$runLevel"
 
 		rm -rf .meteor/local/db
 		sleep 3
