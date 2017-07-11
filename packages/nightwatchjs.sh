@@ -24,12 +24,10 @@ if [[ $RUN_LEVELS != '' ]]; then
 	for runLevel in "${RUN_LEVELS[@]}"; do
 		nightwatch -c tests/nightwatch/nightwatch.json --suiteRetries 3 --tag $runLevel
 
-		if [[ $runLevel == *"Reset"* ]]; then
-			rm -rf .meteor/local/db
-			sleep 3
-			cp -rf ../db .meteor/local
-			sleep 3
-		fi
+		rm -rf .meteor/local/db
+		sleep 3
+		cp -rf ../db .meteor/local
+		sleep 3
 	done
 else
 	nightwatch -c tests/nightwatch/nightwatch.json --suiteRetries 3;
