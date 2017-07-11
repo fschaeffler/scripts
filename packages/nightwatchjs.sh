@@ -42,7 +42,7 @@ if [[ $RUN_LEVELS != '' ]]; then
 	sleep 3
 
 	for runLevel in $(grep -R 'runLevel' tests/nightwatch/cases/ | cut -d"'" -f4 | sort | uniq); do
-		echo $runLevel
+		echo " ===> running run-level $runLevel"
 		nightwatch -c tests/nightwatch/nightwatch.json --suiteRetries 3 --tag "$runLevel"
 
 		if [[ $? != 0 ]]; then
